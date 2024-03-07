@@ -6,10 +6,6 @@
 
 ### Patrick D. Brookshire, Nils Reiter
 
-### Description
-
-The code of this boilerplate is at https://github.com/digicademy/LaTeCH-CLfL24_Moravian-Sentiment
-
-A live demo can be found at http://digicademy.github.io/LaTeCH-CLfL24_Moravian-Sentiment/
+View the presentation online at https://digicademy.github.io/2024_LaTeCH-CLfL_Moravian-Sentiment/
 
 Released under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
