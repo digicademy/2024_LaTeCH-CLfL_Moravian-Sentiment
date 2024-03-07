@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LaTeCH-CLfL 2024 | Modeling Moravian Memoirs: Ternary Sentiment Analysis in a Low Resource Setting</title>
+
+    <!-- meta information -->
+    <meta name="author" content="Torsten Schrade" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <!-- CSS reset and grid -->
+    <link href="vendor/normalize/normalize-4.1.1.css" rel="stylesheet" />
+    <link href="vendor/skeleton/skeleton-2.0.4.css" rel="stylesheet" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,600italic,400italic,700italic,800,800italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+
+    <!-- styles for included libraries -->
+
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup-1.1.0.css" />
+
+    <!-- standard presentation styles -->
+    <link href="resources/css/style.css" rel="stylesheet" />
+
+    <!-- custom presentation styles -->
+    <link href="resources/css/custom.css" rel="stylesheet" />
+
+    <!-- js needed in head -->
+
+    <!-- html5 dataset shim for IE -->
+    <script src="vendor/impress/html5-dataset.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div class="fallback-message">
+        <p>
+            Your browser <strong>doesn't support the features required</strong> by impress.mod.js,
+            so you are presented with a simplified version of this presentation.
+        </p>
+        <p>
+            For the best experience please use the latest <strong>Chrome</strong>, <strong>Safari</strong>
+            or <strong>Firefox</strong> browser.
+        </p>
+    </div>
+
+    <div id="impress">
+
+        <div class="step">
+            <h4><strong>22.03.2024</strong> | <!--a href="https://sighum.wordpress.com/events/latech-clfl-2024/"-->St Julians, Malta<!--/a--></h4>
+            <h4><strong>LaTeCH-CLfL 2024</strong></h4>
+
+            <h1 class="down-100">Modeling Moravian Memoirs:</h1>
+
+            <h2 class="up-25">Ternary Sentiment Analysis in a <br/>Low Resource Setting</h2>
+
+            <h5 class="down-100">
+                <strong>Patrick D. Brookshire</strong>,
+                <strong>Nils Reiter</strong> |
+                <!--a href="https://creativecommons.org/licenses/by/4.0/"-->CC-BY 4.0<!--/a-->
+            </h5>
+        </div>
+
+        <div class="step">
+            <h2>Introduction</h2>
+            <h3 class="up-25 after-25">Ternary Sentiment Analysis</h3>
+            <div class="row">
+              <div class="six columns">
+                <h4>Classes</li>
+                <ul>
+                  <li><code>neg</code>: (ends with) negative sentiment</li>
+                  <li><code>neut</code>: no sentiment bearing words</li>
+                  <li><code>pos</code>: (ends with) positive sentiment</li>
+                </ul>
+              </div>
+              <div class="six columns">
+                <h4>Granularity</li>
+                <ul>
+                  <li>sentences</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Introduction</h2>
+            <h3 class="up-25 after-25">Moravian Memoirs</h3>
+            <div class="row">
+              <div class="six columns">
+                <h4>Moravians</h4>
+                <ul>
+                  <li>Christian group</li>
+                  <li>emerged from 15th century movement</li>
+                  <li>emotional <span class="small">(Van Gent, 2017; Faull and McGuire 2022)</span></li>
+                </ul>
+              </div>
+              <div class="six columns substep">
+                <h4>Moravian Memoirs</h4>
+                <ul>
+                  <li><b>semi-autobiographical</b> sources
+                    <ul>
+                      <li>based on autobiographical notes</li>
+                      <li>composed by others</li>
+                    </ul>
+                  </li>
+                  <li>currently digitized (🇩🇪):
+                    <ul>
+                      <li><a href="https://katiefaull.com/moravian-materials">katiefaull.com</a> (41)</li>
+                      <li><a href="http://moravianlives.org/">moravianlives.org</a> (23/351)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Related Work</h2>
+            <h3 class="up-25 after-25">Digital Biographical Research x Historical Sentiment Analysis</h3>
+            <div class="row">
+              <div class="three columns">
+                <div class="mfp-lightbox">
+                    <a href="resources/img/related_work_venn_highlighted.png" title="Related disciplines">
+                        <img src="resources/img/related_work_venn_highlighted.png" />
+                    </a>
+                </div>
+              </div>
+              <div class="nine columns">
+                <ul>
+                  <li>WW I diaries (🇦🇺) <span class="small">(Dennis-Henderson et al., 2020)</span></li>
+                  <li><strong>Moravian memoirs (🇬🇧/🇺🇸)</strong> <span class="small">(McGuire, 2021; Faull and McGuire, 2022)</span></li>
+                  <li class="substep">both used sentiment lexica</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Data and Methodology</h2>
+            <h3 class="up-25 after-25">Corpus Construction and Annotation</h3>
+            <div class="row">
+              <div class="eight columns">
+                <ol>
+                  <li>selected <b>36</b>/64 Moravian memoirs (🇩🇪)</li>
+                  <li class="substep">split into <b>2210</b> sentences with <i>stanza</i> <span class="small">(Qi et al., 2020)</span></li>
+                  <li class="substep">anonymized with <code>{NAME}</code></li>
+                  <li class="substep">annotated manually with sentiment</li>
+                  <li class="substep">split into train/test datasets:
+                    <table class="down-25">
+                      <thead>
+                        <tr>
+                          <th rowspan="2">Dataset</th>
+                          <th colspan="4">Instances</th>
+                        </tr>
+                        <tr>
+                          <th><code>neg</code></th>
+                          <th><code>neut</code></th>
+                          <th><code>pos</code></th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Train (80%)</th>
+                          <td>485</td>
+                          <td>523</td>
+                          <td class="highlight">760</td>
+                          <td>1768</td>
+                        </tr>
+                        <tr>
+                          <th>Test (20%)</th>
+                          <td>115</td>
+                          <td>150</td>
+                          <td class="highlight">177</td>
+                          <td>442</td>
+                        </tr>
+                        <tr>
+                          <th>Total</th>
+                          <td>600</td>
+                          <td>673</td>
+                          <td class="highlight">937</td>
+                          <td>2210</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="four columns">
+                <div class="">
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/moravian_goldstandard_places-of-birth.png" title="Birthplaces documented in the selected memoirs">
+                          <img src="resources/img/moravian_goldstandard_places-of-birth.png" />
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Results</h2>
+            <h3 class="up-25 after-25">Sentiment Classification</h3>
+            <div class="row">
+              <div class="eight columns">
+                <table>
+                  <thead>
+                    <tr>
+                      <th rowspan="2">Model</th>
+                      <th rowspan="2">Domain(s)</th>
+                      <th rowspan="2">Instances</th>
+                      <th rowspan="2">Accuracy</th>
+                    </tr>
+                    <!--tr>
+                      <th><code>neg</code></th>
+                      <th><code>neut</code></th>
+                      <th><code>pos</code></th>
+                    </tr-->
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Random <img src="resources/img/unicode_1F3B2_emoji_game_die.png" class="logo"/></th>
+                      <td>--</td>
+                      <td>--</td>
+                      <td class="highlight con">.33</td>
+                      <!--td>.33</td>
+                      <td>.33</td>
+                      <td>.33</td-->
+                    </tr>
+                    <tr class="separator-after">
+                      <th>Majority: <code>pos</code></th>
+                      <td>--</td>
+                      <td>--</td>
+                      <td>.40</td>
+                      <!--td class="highlight con">.00</td>
+                      <td class="highlight con">.00</td>
+                      <td>.57</td-->
+                    </tr>
+                    <tr class="">
+                      <th>SentiWS <img src="resources/img/unicode_1F4DA_emoji_books.png" class="logo"/><br/><span class="small">(Remus et al., 2010)</span></th>
+                      <td>finance, reviews</td>
+                      <td class="italics">34.6k types</td>
+                      <td>.34</td>
+                      <!--td>.03</td>
+                      <td>.51</td>
+                      <td class="highlight con">.00</td-->
+                    </tr>
+                    <tr class="separator-after">
+                      <th>GerVADER <img src="resources/img/unicode_1F4DA_emoji_books.png" class="logo"/><br/><span class="small">(Tymann et al., 2019)</span></th>
+                      <td>+ Social Media</td>
+                      <td class="italics">34k types</td>
+                      <td>.59</td>
+                      <!--td>.46</td>
+                      <td>.59</td>
+                      <td>.65</td-->
+                    </tr>
+                    <tr class="">
+                      <th>ger-senti-bert <img src="resources/img/huggingface_logo-noborder.svg" class="logo"/><br/><span class="small">(Guhr et al., 2020)</span></th>
+                      <td>Social Media, reviews</td>
+                      <td>1.8M</td>
+                      <td>.37</td>
+                      <!--td>.18</td>
+                      <td>.51</td>
+                      <td>.09</td-->
+                    </tr>
+                    <tr class="separator-after">
+                      <th>senti-distilbert <a href="https://huggingface.co/lxyuan/distilbert-base-multilingual-cased-sentiments-student" target="_blank" class="small"><img src="resources/img/huggingface_logo-noborder.svg" class="logo"/></a></th>
+                      <td><span class="grey">Social Media,</span> reviews</td>
+                      <td>🇩🇪: 200k</td>
+                      <td>.45</td>
+                      <!--td>.56</td>
+                      <td class="highlight con">.00</td>
+                      <td>.53</td-->
+                    </tr>
+                    <tr class="substep">
+                      <th class="highlight">bert* <br/><span class="small grey">(Devlin et al., 2019)</span></th>
+                      <td class="highlight">Moravian memoirs</td>
+                      <td class="highlight">1.8k</td>
+                      <td>.63</td>
+                      <!--td>.54</td>
+                      <td>.72</td>
+                      <td>.63</td-->
+                    </tr>
+                    <tr class="substep">
+                      <th class="highlight">gbert* <br/><span class="small grey">(Chan et al., 2020)</span></th>
+                      <td class="highlight">Moravian memoirs</td>
+                      <td class="highlight">1.8k</td>
+                      <td class="highlight pro">.81</td>
+                      <!--td class="highlight pro">.76</td>
+                      <td class="highlight pro">.84</td>
+                      <td class="highlight pro">.82</td-->
+                    </tr>
+                    <tr class="substep">
+                      <th class="highlight secondary">ger-senti-bert*</th>
+                      <td class="highlight secondary">Moravian memoirs</td>
+                      <td class="highlight secondary">1.8k</td>
+                      <td>.74</td>
+                      <!--td>.69</td>
+                      <td>.77</td>
+                      <td>.75</td-->
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="small">* marks fine-tuned models</p>
+              </div>
+              <div class="three columns substep">
+                <div class="">
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/confusion_matrix_bert-finetuned.png" title="Confusion Matrix bert*">
+                          <img src="resources/img/confusion_matrix_bert-finetuned.png" />
+                      </a>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/confusion_matrix_gbert-finetuned.png" title="Confusion Matrix gbert*">
+                          <img src="resources/img/confusion_matrix_gbert-finetuned.png" />
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Explaining Sentiment Predictions</h2>
+            <h3 class="up-25 after-25">Explaining Individual Predictions</h3>
+            <div class="row">
+              <ul>
+                <li>external eXplainability model <i>SHAP</i> <span class="small">(Lundberg and Lee, 2017)</span>
+                  <ul>
+                    <li>measures impact of (subword) tokens on model predictions</li>
+                    <li>provides plotting function</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="six columns substep">
+                <div class="eleven columns">
+                  <h4>gbert*</h4>
+                  <div class="ten columns">
+                    <div class="mfp-lightbox">
+                      <a href="resources/img/shap_plot_gbert-finetuned.png" title="SHAP plot gbert*">
+                          <img src="resources/img/shap_plot_gbert-finetuned.png" />
+                      </a>
+                    </div>
+                  </div>
+                  <ul class="small twelve columns">
+                    <li class="pro"><code>neg</code> correctly predicted</li>
+                    <li class="pro">looked at <i>kränckelte</i> ‘ailing’</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="six columns substep">
+                <div class="eleven columns">
+                  <h4>bert*</h4>
+                  <div class="ten columns">
+                    <div class="mfp-lightbox">
+                      <a href="resources/img/shap_plot_bert-finetuned.png" title="SHAP plot bert*">
+                          <img src="resources/img/shap_plot_bert-finetuned.png" />
+                      </a>
+                    </div>
+                  </div>
+                  <ul class="small twelve columns">
+                    <li class="con"><code>pos</code> falsely predicted</li>
+                    <li class="con">looked at <i>Die lezte</i> ‘In recent’</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Explaining Sentiment Predictions</h2>
+            <h3 class="up-25 after-25">SHAP Value Distributions</h3>
+            <div class="row">
+              <div class="six columns">
+                <ul>
+                  <li>applied SHAP to test dataset</li>
+                  <li class="substep">Findings:
+                    <ul class="small">
+                      <li class="pro">most tokens non-discriminatory (IQR)</li>
+                      <li class="pro substep"><code>neut</code> more strongly inferred ex-negativo</li>
+                      <li class="pro substep">gbert* learned more</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="four columns">
+                <div class="">
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/shap_value_distribution_finetuned.png" title="SHAP value distributions bert*/gbert*">
+                          <img src="resources/img/shap_value_distribution_finetuned.png" />
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Explaining Sentiment Predictions</h2>
+            <h3 class="up-25 after-25">N-gram Analysis</h3>
+            <div class="row">
+              <div class="six columns">
+                <ul>
+                  <li>applied SHAP to test dataset</li>
+                  <li>Findings:
+                    <ul class="small">
+                      <li class="pro">most tokens non-discriminatory (IQR)</li>
+                      <li class="pro"><code>neut</code> more strongly inferred ex-negativo</li>
+                      <li class="pro">gbert* learned <b>sentiment-bearing words</b></li>
+                      <li class="con substep">bert* learned negations/punctuation</li>
+                      <li class="pro substep">bert* classified dates/places as <code>neut</code></li>
+                    </ul>
+                  </li>
+                  <li class="substep">Assumption: tokenization matters</li>
+                </ul>
+              </div>
+              <div class="six columns">
+                <div class="">
+                  <h4>gbert*</h4>
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/shap_top20_gbert-finetuned.png" title="Top 20 n-grams per class gbert*">
+                          <img src="resources/img/shap_top20_gbert-finetuned.png" />
+                      </a>
+                  </div>
+                  <h4>bert*</h4>
+                  <div class="mfp-lightbox">
+                      <a href="resources/img/shap_top20_bert-finetuned.png" title="Top 20 n-grams per class bert*">
+                          <img src="resources/img/shap_top20_bert-finetuned.png" />
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Conclusion</h2>
+            <h3 class="up-25 after-25"></h3>
+            <div class="row down-75">
+              <ul>
+                <li>sentiment dictionaries outperformed by transformers <span class="small">(Schmidt et al., 2021; Allaith et al., 2023)</span></li>
+                <li class="substep">81% accuracy (state-of-the-art) reachable with 1.8k fine-tuning instances
+                  <ul>
+                    <li>annotating still worth the effort</li>
+                  </ul>
+                </li>
+                <li class="substep">model predictions explainable <span class="small">(Inácio et al., 2023)</span></li>
+              </ul>
+
+              <p class="down-100 substep"><i>Code and Data available at <a href="https://github.com/pdbro2k/LaTeCH-CLfL24_MoravianSentiment" target="_blank">https://github.com/pdbro2k/LaTeCH-CLfL24_MoravianSentiment</a></i></p>
+            </div>
+        </div>
+
+        <div class="step centered">
+            <div class="centered">
+                <h1>F I N I S</h1>
+                <h2>Thank you</h2>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>References</h2>
+            <ul class="smaller">
+                <li>Ali Allaith, Kirstine Degn, Alexander Conroy, Bolette S.
+Pedersen, Jens Bjerring-Hansen, and Daniel Hershcovich. 2023. <a href="https://aclanthology.org/2023.nodalida-1.34/" target="_blank">Sentiment Classification of Historical
+Danish and Norwegian Literary Texts.</a> In <i>Nordic
+Conference of Computational Linguistics</i>, pages 324–
+334. University of Tartu Library</li>
+                <li>Branden Chan, Stefan Schweter, and Timo Möller. 2020.
+<a href="https://doi.org/10.18653/v1/2020.coling-main.598" target="_blank">German’s Next Language Model.</a> In <i>Proceedings of
+the 28th International Conference on Computational
+Linguistics</i>, pages 6788–6796, Barcelona, Spain (Online). International Committee on Computational Linguistics.</li>
+                <li>Ashley Dennis-Henderson, Matthew Roughan, Lewis
+Mitchell, and Jonathan Tuke. 2020. <a href="https://aclanthology.org/2020.latechclfl-1.11/" target="_blank">Life still goes
+on: Analysing Australian WW1 diaries through distant reading.</a> In <i>Proceedings of the The 4th Joint
+SIGHUM Workshop on Computational Linguistics
+for Cultural Heritage, Social Sciences, Humanities
+and Literature</i>, pages 90–104, Online. International
+Committee on Computational Linguistics.</li>
+                <li>Jacob Devlin, Ming-Wei Chang, Kenton Lee, and
+Kristina Toutanova. 2019. <a href="https://doi.org/10.18653/v1/N19-1423" target="_blank">Bert: Pre-training of Deep
+Bidirectional Transformers for Language Understanding.</a> In <i>Proceedings of the 2019 Conference of the
+North American Chapter of the Association for Computational Linguistics: Human Language Technologies</i>, volume 1, pages 4171–4186, Minneapolis, Minnesota. Association for Computational Linguistics.</li>
+                <li>Katherine Mary Faull and Michael A. McGuire. 2022.
+<a href="https://doi.org/10.5325/jmorahist.22.2.0125" target="_blank">Analyzing Moravian Feelings Using Computational
+Methods to Ask Questions about Norms and Sentiments in Eighteenth-Century Moravian Lebensläufe.</a>
+<i>Journal of Moravian History</i>, 22:125–149.</li>
+                <li>Oliver Guhr, Anne-Kathrin Schumann, Frank
+Bahrmann, and Hans Joachim Böhme. 2020.
+<a href="https://aclanthology.org/2020.lrec-1.202/" target="_blank">Training a Broad-Coverage German Sentiment
+Classification Model for Dialog Systems.</a> In
+<i>Proceedings of The 12th Language Resources and
+Evaluation Conference</i>, pages 1620–1625, Marseille,
+France. European Language Resources Association.</li>
+                <li>Marcio Inácio, Gabriela Wick-Pedro, and Hugo
+Goncalo Oliveira. 2023. <a href="https://aclanthology.org/2023.latechclfl-1.10/" target="_blank">What do Humor Classifiers
+Learn? An Attempt to Explain Humor Recognition
+Models.</a> In <i>Proceedings of the 7th Joint SIGHUM
+Workshop on Computational Linguistics for Cultural
+Heritage, Social Sciences, Humanities and Literature</i>, pages 88–98, Dubrovnik, Croatia. Association
+for Computational Linguistics.</li>
+                <li>Scott M Lundberg and Su-In Lee. 2017. <a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf" target="_blank">A Unified
+Approach to Interpreting Model Predictions.</a> In <i>Advances in Neural Information Processing Systems</i>,
+volume 30. Curran Associates, Inc.</li>
+                <li>Michael McGuire. 2021. <i>Computational Sentiment
+Analysis of an 18th Century Corpus of Moravian
+English Memoirs</i>. Ph.D. thesis, Indiana University.</li>
+                <li>Peng Qi, Yuhao Zhang, Yuhui Zhang, Jason Bolton, and
+Christopher D. Manning. 2020. <a href="https://nlp.stanford.edu/pubs/qi2020stanza.pdf" target="_blank">Stanza: A Python
+Natural Language Processing Toolkit for Many Human Languages.</a> In <i>Proceedings of the 58th Annual
+Meeting of the Association for Computational Linguistics: System Demonstrations.</i></li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h2>References</h2>
+            <ul class="smaller">
+                <li>Robert Remus, Uwe Quasthoff, and Gerhard Heyer.
+2010. <a href="http://www.lrec-conf.org/proceedings/lrec2010/" target="_blank">SentiWS: A Publicly Available Germanlanguage Resource for Sentiment Analysis.</a> In <i>International Conference on Language Resources and
+Evaluation</i>, pages 1168–1171.</li>
+                <li>Thomas Schmidt, Katrin Dennerlein, and Christian
+Wolff. 2021. <a href="https://doi.org/10.26298/melusina.8f8w-y749-udlf" target="_blank">Using Deep Learning for Emotion
+Analysis of 18th and 19th Century German Plays.</a>
+In <i>Fabrikation von Erkenntnis: Experimente in den
+Digital Humanities</i>. Melusina Press.</li>
+                <li>Karsten Tymann, Matthias Lutz, Patrick Palsbröker, and
+Carsten Gips. 2019. GerVADER: A German Adaptation of the VADER Sentiment Analysis Tool for
+Social Media Texts. In <i>Lernen, Wissen, Daten, Analysen</i>.</li>
+                <li>Jacqueline Van Gent. 2017. <a href="https://doi.org/10.1007/978-3-319-44185-6_12" target="_blank">Moravian Memoirs and
+the Emotional Salience of Conversion Rituals.</a> In
+<i>Emotion, Ritual and Power in Europe, 1200–1920:
+Family, State and Church</i>, pages 241–260.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- jquery -->
+    <script src="vendor/jquery/jquery-1.11.0.min.js"></script>
+
+    <!-- chartist -->
+
+    <!-- codemirror -->
+
+    <!-- highlight -->
+
+    <!-- magnific popup -->
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min-1.1.0.js"></script>
+    <script src="resources/js/magnific-popup.lightbox.js"></script>
+
+    <!-- impress.mod.js -->
+    <script src="vendor/impress/impress.fork.js"></script>
+    <script src="vendor/impress/impress-slidenum.js"></script>
+    <script>
+        var obj = impress();
+        obj.init();
+        initSlideNo(obj);
+    </script>
+
+</body>
+</html>
