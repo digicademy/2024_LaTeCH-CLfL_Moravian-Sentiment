@@ -155,3 +155,17 @@ li.neutral::before {
 	font-weight: bold;
   color: grey;
 }
+
+/* responsibility */
+@media screen and (max-width: 1000px) {
+  .step {
+    height: 100vh !important;
+    width: 150vw !important;
+  }
+  .step * {
+    font-size: 90% !important;
+  }
+  .smaller {
+    font-size: 60% !important;
+  }
+}
